@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import './App.css';
-import {FullInput} from "./Components/InputBlock/FullInput";
+import {Input} from "./Components/Input+Button version 2/Input";
+import {Button} from "./Components/Input+Button version 2/Button";
 // const Students = [
 //     {id: 1, name: 'Egor', age: 44},
 //     {id: 2, name: 'Valera', age: 34},
@@ -23,13 +24,18 @@ function App() {
         setMessage([newMessage, ...message])
         console.log(title)
     }
+
+    let [title, setTitle] = useState("")
+    const callBackButtonHandler = () => {
+        addMessage(title)
+        setTitle("")
+    }
+
     return (
         <div className={"App"}>
-            <FullInput addMessage={addMessage}/>
-            {/*<div>*/}
-            {/*    <input/>*/}
-            {/*    <button>+</button>*/}
-            {/*</div>*/}
+            {/*<FullInput addMessage={addMessage}/>*/}
+            <Input setTitle={setTitle} title={title}/>
+            <Button name={"+"} callBack={callBackButtonHandler}/>
             {message.map((el, index) => {
                 return (
                     <div key={index}>{el.message}</div>
